@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    match /rooms/{room}/msgs/{id} {
+      allow read: if request.auth != null;
+      // text = public room, c = end-to-end encrypted ciphertext (private room).
+      // Private messages must carry an exp no more than ~2 hours out.
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.u == request.time
+        && request.resource.data.get('text', '') is string
+        && request.resource.data.get('text', '').size() <= 2000
+        && request.resource.data.get('c', '') is string
+        && request.resource.data.get('c', '').size() <= 8000
+        && (!('exp' in request.resource.data)
+            || (request.resource.data.exp > request.time
+                && request.resource.data.exp <= request.time + duration.value(125, 'm')));
+      // Owner can edit or tombstone; anyone can add/remove reactions. Every change must bump "u" (the delta-sync cursor).
+      allow update: if request.auth != null
+        && request.resource.data.u == request.time
+        && request.resource.data.uid == resource.data.uid
+        && (resource.data.uid == request.auth.uid
+            || request.resource.data.diff(resource.data).affectedKeys().hasOnly(['rx', 'u']));
+      // Owners delete their own; expired private messages can be purged by anyone.
+      allow delete: if request.auth != null
+        && (resource.data.uid == request.auth.uid
+            || ('exp' in resource.data && resource.data.exp < request.time));
+    }
+
+    // Compressed (and, in private rooms, encrypted) attachments. Stored as base64, so they stay under the 1 MiB doc limit.
+    match /rooms/{room}/files/{id} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.d is string
+        && request.resource.data.d.size() <= 850000;
+      allow delete: if request.auth != null
+        && (resource.data.uid == request.auth.uid
+            || ('exp' in resource.data && resource.data.exp < request.time));
+    }
+  }
+}
