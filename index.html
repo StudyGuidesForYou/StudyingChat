@@ -28,108 +28,216 @@ aside{background:var(--p);padding:16px;display:flex;flex-direction:column;gap:10
 #st{margin-top:auto;font-size:12px;color:var(--m);display:grid;gap:4px}
 #st i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#777}
 .live i{background:var(--a)}.standby i{background:#ffd23f}.down i{background:#ff4d4d}
+.pl{font-size:13px;color:var(--m)}.pl label{display:block;padding:2px 0}
 .foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
 .foot select,.foot button{background:var(--p2);border:2px solid var(--ink);border-radius:8px;padding:4px 8px}
 main{display:flex;flex-direction:column;min-width:0;height:100%}
-header{padding:14px 18px;border-bottom:2px solid var(--ink);font-weight:800;font-size:18px}
+header{padding:14px 18px;border-bottom:2px solid var(--ink);font-weight:800;font-size:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+header small{font-weight:400;font-size:12px;color:var(--m)}
+.hb{background:var(--p2);border:2px solid var(--ink);border-radius:8px;padding:2px 9px;font-size:12px}
 #msgs{flex:1;overflow:auto;padding:12px 0}
+#old{display:block;margin:0 auto 10px;font-size:12px}
 .m{display:flex;gap:10px;padding:5px 16px}
+.m.g{padding-top:0}.m.g .av{visibility:hidden;height:0}.m.g .hd{display:none}
+.cp .m{padding:2px 16px}.cp .av{width:24px;height:24px}
 .m.me{flex-direction:row-reverse}
 .av{width:36px;height:36px;border-radius:50%;flex:none;background:var(--p2)}
 .bd{max-width:min(640px,86%);background:var(--p2);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:7px 12px;border-radius:12px;overflow-wrap:anywhere;cursor:pointer}
 .me .bd{background:var(--a);color:var(--ink);box-shadow:3px 3px 0 var(--b)}
 .hd i{font-size:11px;opacity:.6;font-style:normal;margin-left:4px}
 .q{font-size:12px;opacity:.75;border-left:3px solid var(--b);padding-left:7px;margin:3px 0}
+.gh{opacity:.55;font-size:13px}
 .bd img.pic{display:block;max-width:100%;max-height:300px;border-radius:8px;margin-top:6px}
 .bd a{color:inherit;text-decoration:underline}
+code,pre{background:rgba(0,0,0,.35);color:#f3f0ff;border-radius:5px;padding:0 4px;font:13px ui-monospace,Menlo,monospace}
+pre{display:block;padding:6px 8px;margin:4px 0;white-space:pre-wrap}
+.sp{background:#000;color:#000;border-radius:4px;padding:0 3px;cursor:pointer}.sp.on{background:rgba(0,0,0,.25);color:inherit}
+.fc{display:block;margin-top:6px;background:var(--p);color:var(--t);border:2px solid var(--ink);border-radius:8px;padding:5px 10px;font-size:13px}
 .mn{background:rgba(255,255,255,.18);border-radius:5px;padding:0 3px}.mn.me{background:var(--b);color:#fff}
 .rxs{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .rx{font-size:12px;border:2px solid var(--ink);background:var(--p);color:var(--t);border-radius:99px;padding:0 7px}.rx.on{border-color:var(--b)}
 .ac{display:none;gap:4px;flex-wrap:wrap;margin-top:6px}.m.open .ac{display:flex}
 .ac button{background:var(--p);color:var(--t);border:2px solid var(--ink);border-radius:8px;padding:1px 7px;font-size:13px}
-#rp{padding:6px 18px;background:var(--p);font-size:13px;color:var(--m);cursor:pointer}
+#rp,#at{padding:6px 18px;background:var(--p);font-size:13px;color:var(--m);cursor:pointer}
 .bar{display:flex;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
 #in{flex:1;min-width:0;background:var(--p);border:2px solid var(--ink);border-radius:10px;padding:11px 14px}
+dialog{margin:12vh auto;background:var(--p);color:var(--t);border:2px solid var(--a);border-radius:12px;padding:12px;width:min(380px,92vw)}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+#qi{width:100%;background:var(--bg);border:2px solid var(--ink);border-radius:8px;padding:8px}
+#ql button{display:block;width:100%;text-align:left;background:none;border:0;padding:7px;border-radius:7px}#ql button:hover,#ql button:first-child{background:var(--p2)}
 #toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--b);color:#fff;padding:8px 16px;border-radius:10px;border:2px solid var(--ink);opacity:0;transition:opacity .2s;pointer-events:none}
 #toast.on{opacity:1}
-@media(max-width:720px){#app{grid-template-columns:1fr;grid-template-rows:auto 1fr}aside{flex-direction:row;align-items:center;border:0;border-bottom:2px solid var(--ink);padding:8px;overflow-x:auto}.logo,#st,.foot label{display:none}.rm,.ghost{width:auto;white-space:nowrap}}
+@media(max-width:720px){#app{grid-template-columns:1fr;grid-template-rows:auto 1fr}aside{flex-direction:row;align-items:center;border:0;border-bottom:2px solid var(--ink);padding:8px;overflow-x:auto}.logo,#st{display:none}.rm,.ghost{width:auto;white-space:nowrap}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head>
 <body data-th="">
 <div id="login"><div><h1>Say it.<br><span>No filter.</span></h1><p>Private chat for the group. Sign in to jump in.</p><button class="btn" id="go">Continue with Google</button></div></div>
 <div id="app" hidden>
-<aside><div class="logo">StudyingChat</div><div id="rooms" style="display:contents"></div><button class="ghost" id="add">+ New room</button><div id="st"></div>
-<div class="foot"><select id="th" aria-label="Theme"><option value="">Grape</option><option value="sunset">Sunset</option><option value="mint">Mint</option></select><label><input type="checkbox" id="nt"> Alerts</label><button id="out">Sign out</button></div></aside>
-<main><header id="rn"></header><div id="msgs" aria-live="polite"></div><div id="rp" hidden></div>
-<div class="bar"><input id="in" placeholder="Type a message. Paste an image link to embed it." autocomplete="off" maxlength="2000"><button class="btn" id="snd">Send</button></div></main></div>
+<aside><div class="logo">StudyingChat</div><div id="rooms" style="display:contents"></div><button class="ghost" id="add">+ New room</button><button class="ghost" id="addp">🔒 New private chat</button><div id="st"></div>
+<details class="pl"><summary>Plugins</summary><label><input type="checkbox" data-o="nt"> Alerts</label><label><input type="checkbox" data-o="log"> Message logger</label><label><input type="checkbox" data-o="cp"> Compact mode</label><label><input type="checkbox" data-o="bg"> Always-on (uses more quota)</label></details>
+<div class="foot"><select id="th" aria-label="Theme"><option value="">Grape</option><option value="sunset">Sunset</option><option value="mint">Mint</option></select><button id="out">Sign out</button></div></aside>
+<main><header id="rn"></header><div id="msgs" aria-live="polite"></div><div id="rp" hidden></div><div id="at" hidden></div>
+<div class="bar"><button class="ghost" id="clip" aria-label="Attach file">📎</button><input type="file" id="fi" hidden><input id="in" placeholder="Message. /shrug /me /spoiler, **bold**, ||spoiler||, paste or drop files" autocomplete="off" maxlength="2000"><button class="btn" id="snd">Send</button></div></main></div>
+<dialog id="qs"><input id="qi" placeholder="Jump to a room..." autocomplete="off"><div id="ql"></div></dialog>
 <div id="toast"></div>
 <script type="module">
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithCredential,onAuthStateChanged,signOut} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import {getFirestore,collection,addDoc,query,orderBy,limit,onSnapshot,doc,updateDoc,deleteDoc,serverTimestamp,arrayUnion,arrayRemove,FieldPath} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import {getFirestore,collection,query,orderBy,limit,startAfter,where,onSnapshot,getDocs,getDoc,doc,updateDoc,deleteDoc,writeBatch,serverTimestamp,Timestamp,arrayUnion,arrayRemove,FieldPath} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 // One entry per free Firebase project. Add more any time; order = write priority.
 const BACKENDS=[
  {apiKey:"YOUR_API_KEY_1",authDomain:"YOUR_PROJECT_1.firebaseapp.com",projectId:"YOUR_PROJECT_1",appId:"YOUR_APP_ID_1"},
  {apiKey:"YOUR_API_KEY_2",authDomain:"YOUR_PROJECT_2.firebaseapp.com",projectId:"YOUR_PROJECT_2",appId:"YOUR_APP_ID_2"},
  {apiKey:"YOUR_API_KEY_3",authDomain:"YOUR_PROJECT_3.firebaseapp.com",projectId:"YOUR_PROJECT_3",appId:"YOUR_APP_ID_3"}];
-const COOL=9e5, EM=['👍','😂','🔥','💀','❤️'];
-const $=s=>document.querySelector(s), ls=localStorage;
+const COOL=9e5,HR=6.9e6,MAXF=6e5,EM=['👍','😂','🔥','💀','❤️'];
+const CMD={'/shrug':'¯\\_(ツ)_/¯','/tableflip':'(╯°□°)╯︵ ┻━┻','/unflip':'┬─┬ ノ( ゜-゜ノ)','/lenny':'( ͡° ͜ʖ ͡°)'};
+const $=s=>document.querySelector(s),ls=localStorage,te=new TextEncoder(),td=new TextDecoder();
+const J=(k,d)=>{try{return JSON.parse(ls[k])??d}catch{return d}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const B=BACKENDS.filter(c=>!/YOUR_/.test(c.apiKey)).map((c,i)=>{const app=initializeApp(c,'b'+i);return{i,auth:getAuth(app),db:getFirestore(app),down:0,user:null,unsub:null,msgs:new Map()}});
-let room=ls.room||'general', rooms=JSON.parse(ls.rooms||'["general","random","memes"]'), reply=null, open='';
-const ok=b=>b.user&&(!b.down||Date.now()-b.down>COOL), order=()=>B.filter(ok);
-const T=m=>m.ts?.toMillis?.()??Date.now();
+const kb=n=>n>1e6?(n/1e6).toFixed(1)+' MB':Math.max(1,Math.round(n/1e3))+' KB';
+const opt=k=>ls['o_'+k]=='1',isP=r=>r.startsWith('p-');
+const tb=u=>{let s='';for(let i=0;i<u.length;i+=32768)s+=String.fromCharCode.apply(null,u.subarray(i,i+32768));return btoa(s)};
+const fb=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const ub=u=>tb(u).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const fu=s=>fb(s.replace(/-/g,'+').replace(/_/g,'/'));
+
+const B=BACKENDS.filter(c=>!/YOUR_/.test(c.apiKey)).map((c,i)=>{const app=initializeApp(c,'b'+i);return{i,auth:getAuth(app),db:getFirestore(app),down:0,user:null,unsub:null,msgs:new Map(),u:0,rd:0}});
+let rooms=J('rooms',['general','random','memes']),priv=J('priv',{}),room=ls.room||'general',reply=null,edit=null,att=null,open='',paused=false,hideT,raf=0;
+const urls=new Map(),keys=new Map();
+
+// Invite link: #p=<roomId>.<key>. The key lives only in the URL fragment, which browsers never send to any server.
+{const h=location.hash.match(/^#p=(p-[a-f0-9]{16})\.([A-Za-z0-9_-]{43})$/);if(h){priv[h[1]]={k:h[2]};ls.priv=JSON.stringify(priv);room=h[1]}history.replaceState(null,'',location.pathname+location.search)}
+if(isP(room)&&!priv[room])room='general';
+
+const ok=b=>b.user&&(!b.down||Date.now()-b.down>COOL),order=()=>B.filter(ok);
+const me=()=>B.find(b=>b.user)?.user;
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),3000)}
 function beep(){try{const c=new AudioContext(),o=c.createOscillator();o.connect(c.destination);o.frequency.value=660;o.start();o.stop(c.currentTime+.12)}catch{}}
-const fmt=t=>esc(t).replace(/(https?:\/\/[^\s<]+)/g,u=>/\.(png|jpe?g|gif|webp)(\?|$)/i.test(u)?`<img class="pic" src="${u}" loading="lazy" alt="">`:`<a href="${u}" target="_blank" rel="noopener">${u}</a>`).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/@(\w+)/g,(m,n)=>`<span class="mn${me()&&me().displayName?.split(' ')[0].toLowerCase()==n.toLowerCase()?' me':''}">${m}</span>`);
-const me=()=>B.find(b=>b.user)?.user;
+const note=t=>{$('#rp').hidden=!t;$('#rp').textContent=t||''};
 
-function status(){const live=order()[0];$('#st').innerHTML=B.map(b=>{const s=!b.user?'off':b.down&&Date.now()-b.down<COOL?'down':b===live?'live':'standby';return`<div class="${s}"><i></i>Server ${b.i+1}: ${s}</div>`}).join('')}
-function draw(){const el=$('#msgs'),near=el.scrollHeight-el.scrollTop-el.clientHeight<140;
- const ms=B.flatMap(b=>[...b.msgs.values()]).sort((a,b)=>T(a)-T(b)).slice(-150);
- el.innerHTML=ms.map(m=>{const u=B[m.b].user?.uid,mine=u===m.uid;
+// ---- Encryption: AES-256-GCM, fresh random IV per message, room id bound as authenticated data ----
+const gk=r=>keys.get(r)||(keys.set(r,crypto.subtle.importKey('raw',fu(priv[r].k),'AES-GCM',false,['encrypt','decrypt'])),keys.get(r));
+const enc=async(r,buf)=>{const iv=crypto.getRandomValues(new Uint8Array(12)),ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv,additionalData:te.encode(r)},await gk(r),buf)),o=new Uint8Array(12+ct.length);o.set(iv);o.set(ct,12);return o};
+const dec=async(r,o)=>new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:o.subarray(0,12),additionalData:te.encode(r)},await gk(r),o.subarray(12)));
+
+// ---- Compression: images -> resized WebP, everything else -> gzip ----
+const pipe=async(buf,C)=>{const s=new C('gzip'),w=s.writable.getWriter();w.write(buf);w.close();return new Uint8Array(await new Response(s.readable).arrayBuffer())};
+async function prep(f){
+ if(/^image\/(png|jpe?g|webp|bmp)$/.test(f.type)){const bm=await createImageBitmap(f),s=Math.min(1,1280/Math.max(bm.width,bm.height)),c=document.createElement('canvas');c.width=Math.round(bm.width*s);c.height=Math.round(bm.height*s);c.getContext('2d').drawImage(bm,0,0,c.width,c.height);
+  for(let q=.8;q>=.3;q-=.1){const bl=await new Promise(r=>c.toBlob(r,'image/webp',q));if(bl&&bl.size<=MAXF)return{b:new Uint8Array(await bl.arrayBuffer()),t:'image/webp',z:0}}}
+ const z=await pipe(new Uint8Array(await f.arrayBuffer()),CompressionStream);
+ if(z.length>MAXF)throw 0;return{b:z,t:f.type||'application/octet-stream',z:1}}
+
+// ---- Rendering ----
+const fmt=t=>{const cs=[],k=h=>'\x01'+(cs.push(h)-1)+'\x01';
+ return esc(t).replace(/```([\s\S]+?)```/g,(_,c)=>k(`<pre>${c}</pre>`)).replace(/`([^`\n]+)`/g,(_,c)=>k(`<code>${c}</code>`))
+ .replace(/(https?:\/\/[^\s<]+)/g,u=>/\.(png|jpe?g|gif|webp)(\?|$)/i.test(u)?`<img class="pic" src="${u}" loading="lazy" alt="">`:`<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`)
+ .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(?!\*)(.+?)\*/g,'<i>$1</i>').replace(/~~(.+?)~~/g,'<s>$1</s>').replace(/\|\|(.+?)\|\|/g,'<span class="sp">$1</span>')
+ .replace(/@(\w+)/g,(m,n)=>`<span class="mn${me()&&me().displayName?.split(' ')[0].toLowerCase()==n.toLowerCase()?' me':''}">${m}</span>`)
+ .replace(/\x01(\d+)\x01/g,(_,i)=>cs[i])};
+const fileHtml=m=>{if(!m.f)return'';const x=urls.get(m.f.id);
+ return x?(x.img?`<img class="pic" src="${x.u}" alt="">`:`<a class="fc" href="${x.u}" download="${esc(m.f.n)}">⬇ ${esc(m.f.n)}</a>`)
+ :`<button class="fc" data-a="ld">📎 ${esc(m.f.n)} · ${kb(+m.f.s)}${m.f.o?` (was ${kb(+m.f.o)})`:''} · tap to load</button>`};
+function status(){const live=order()[0];$('#st').innerHTML=B.map(b=>{const s=!b.user?'off':b.down&&Date.now()-b.down<COOL?'down':b===live?'live':'standby';return`<div class="${s}"><i></i>Server ${b.i+1}: ${s} · ${b.rd} reads</div>`}).join('')}
+const draw=()=>raf||(raf=requestAnimationFrame(()=>{raf=0;paint()}));
+function paint(){const el=$('#msgs'),near=el.scrollHeight-el.scrollTop-el.clientHeight<140,now=Date.now(),log=opt('log');
+ const ms=B.flatMap(b=>[...b.msgs.values()]).filter(m=>(!m.exp||m.exp>now)&&(!m.del||(log&&m.ghost))).sort((a,b)=>a.ts-b.ts).slice(-120);let p=null;
+ el.innerHTML=(isP(room)?'':'<button class="ghost" id="old">Load older</button>')+ms.map(m=>{const u=B[m.b].user?.uid,mine=u===m.uid,g=p&&p.b==m.b&&p.uid==m.uid&&m.ts-p.ts<3e5&&!m.re&&!p.del;p=m;
   const rx=Object.entries(m.rx||{}).filter(([,l])=>l.length).map(([e,l])=>`<button class="rx${l.includes(u)?' on':''}" data-a="rx" data-e="${e}">${e} ${l.length}</button>`).join('');
-  return`<div class="m${mine?' me':''}${m.id==open?' open':''}" data-id="${m.id}" data-b="${m.b}"><img class="av" src="${esc(m.photo||'')}" alt="" onerror="this.style.visibility='hidden'"><div class="bd"><div class="hd"><b>${esc(m.name)}</b><i>${new Date(T(m)).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}${m.edited?' · edited':''}</i></div>${m.re?`<div class="q">${esc(m.re.n)}: ${esc(m.re.t)}</div>`:''}<div>${fmt(m.text)}</div><div class="rxs">${rx}</div><div class="ac">${EM.map(e=>`<button data-a="rx" data-e="${e}">${e}</button>`).join('')}<button data-a="re">Reply</button>${mine?'<button data-a="ed">Edit</button><button data-a="del">Delete</button>':''}</div></div></div>`}).join('')||'<p style="text-align:center;color:var(--m);margin-top:40px">Quiet in here. Say something.</p>';
+  const body=m.del?`<div class="gh">deleted: ${esc(m.ghost)}</div>`:`<div>${fmt(m.text||'')}</div>${fileHtml(m)}`;
+  return`<div class="m${mine?' me':''}${g?' g':''}${m.id==open?' open':''}" data-id="${m.id}" data-b="${m.b}"><img class="av" src="${esc(m.photo||'')}" alt="" onerror="this.style.visibility='hidden'"><div class="bd"><div class="hd"><b>${esc(m.name)}</b><i>${new Date(m.ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}${m.edited?' · edited':''}</i></div>${m.re?`<div class="q">${esc(m.re.n)}: ${esc(m.re.t)}</div>`:''}${body}${log&&m.old&&!m.del?`<div class="gh">was: ${esc(m.old)}</div>`:''}<div class="rxs">${rx}</div><div class="ac">${EM.map(e=>`<button data-a="rx" data-e="${e}">${e}</button>`).join('')}<button data-a="re">Reply</button>${mine&&!m.del?'<button data-a="ed">Edit</button><button data-a="del">Delete</button>':''}</div></div></div>`}).join('')||'<p style="text-align:center;color:var(--m);margin-top:40px">Quiet in here. Say something.</p>';
  if(near)el.scrollTop=el.scrollHeight}
 
-function listen(b){b.unsub?.();b.msgs.clear();if(!b.user)return;let first=true;
- b.unsub=onSnapshot(query(collection(b.db,'rooms',room,'msgs'),orderBy('ts','desc'),limit(100)),s=>{
+// ---- Delta sync: the cache supplies history for free, the listener only pays for what changed since ----
+async function norm(b,id,d){const p=b.msgs.get(id),m={...d,id,b:b.i,ts:d.ts?.toMillis?.()??Date.now(),u:d.u?.toMillis?.()??Date.now(),exp:d.exp?.toMillis?.()};
+ if(isP(room)&&d.c!==undefined){m.text='';if(d.c)try{const o=JSON.parse(td.decode(await dec(room,fb(d.c))));m.text=o.t;m.f=o.f;if(o.q)m.re={n:o.qn||'',t:o.q}}catch{m.text='🔒 Cannot decrypt (wrong key?)'}delete m.c}
+ if(p){if(m.del&&!p.del)m.ghost=p.ghost||p.text;if(m.edited&&p.text&&p.text!==m.text)m.old=p.old||p.text;else if(p.old)m.old=p.old}
+ return m}
+const save=(b,k)=>{const a=[...b.msgs.values()].sort((x,y)=>x.ts-y.ts).slice(-80).map(({b:_,...m})=>m);try{ls[k]=JSON.stringify({m:a,u:b.u})}catch{}};
+function listen(b){b.unsub?.();b.unsub=null;b.msgs.clear();b.u=0;if(!b.user||paused)return;
+ const P=isP(room),k='c:'+room+':'+b.i;
+ if(!P){const c=J(k,null);if(c&&Date.now()-c.u<2592e5){c.m.forEach(m=>b.msgs.set(m.id,{...m,b:b.i}));b.u=c.u}}
+ const col=collection(b.db,'rooms',room,'msgs'),r=room;
+ const q=b.u?query(col,where('u','>',Timestamp.fromMillis(b.u-2e3)),orderBy('u')):query(col,orderBy('u','desc'),limit(P?60:40));let first=true;
+ b.unsub=onSnapshot(q,async s=>{
   if(b.down){b.down=0;status()}
-  s.docChanges().forEach(c=>{if(c.type=='removed')b.msgs.delete(c.doc.id);else{b.msgs.set(c.doc.id,{id:c.doc.id,b:b.i,...c.doc.data({serverTimestamps:'estimate'})});
-   const d=c.doc.data();if(!first&&c.type=='added'&&d.uid!=b.user.uid&&!s.metadata.hasPendingWrites&&$('#nt').checked){beep();if(document.hidden&&Notification.permission=='granted')new Notification(d.name,{body:d.text})}}});
-  first=false;draw()},
+  if(!s.metadata.fromCache)b.rd+=s.docChanges().length;
+  const ch=s.docChanges().filter(c=>c.type!='removed'),ms=await Promise.all(ch.map(c=>norm(b,c.doc.id,c.doc.data({serverTimestamps:'estimate'}))));
+  if(r!=room)return;
+  ms.forEach((m,i)=>{const c=ch[i],pend=c.doc.metadata.hasPendingWrites;b.msgs.set(m.id,m);if(!pend)b.u=Math.max(b.u,m.u);
+   if(!first&&c.type=='added'&&!pend&&m.uid!=b.user.uid&&!m.del&&opt('nt')){beep();if(document.hidden&&Notification.permission=='granted')new Notification(m.name,{body:P?'New private message':(m.text||'').slice(0,100)})}});
+  first=false;if(!P)save(b,k);draw();status()},
  e=>{b.down=Date.now();status();setTimeout(()=>listen(b),COOL)})}
+async function older(){let n=0;for(const b of order()){const o=Math.min(Infinity,...[...b.msgs.values()].map(m=>m.u));if(o==Infinity)continue;
+ try{const s=await getDocs(query(collection(b.db,'rooms',room,'msgs'),orderBy('u','desc'),startAfter(Timestamp.fromMillis(o)),limit(30)));b.rd+=s.size;for(const d of s.docs){const m=await norm(b,d.id,d.data());b.msgs.set(m.id,m);n++}}catch{}}
+ n?draw():toast('That is the start of the room.')}
 
-function setRoom(r){room=r;ls.room=r;$('#rn').textContent='# '+r;
- $('#rooms').innerHTML=rooms.map(x=>`<button class="rm${x==r?' on':''}" data-r="${esc(x)}"># ${esc(x)}</button>`).join('');
- reply=null;$('#rp').hidden=true;B.forEach(listen);draw()}
+function setRoom(r){room=r;ls.room=r;
+ $('#rn').innerHTML=isP(r)?`🔒 ${esc(r.slice(2,6))} <small>end-to-end encrypted · messages vanish 2h after sending</small><button class="hb" data-a="inv">Invite</button><button class="hb" data-a="lv">Leave</button>`:'# '+esc(r);
+ $('#rooms').innerHTML=[...rooms,...Object.keys(priv)].map(x=>`<button class="rm${x==r?' on':''}" data-r="${esc(x)}">${isP(x)?'🔒 '+esc(x.slice(2,6)):'# '+esc(x)}</button>`).join('');
+ cancel();B.forEach(listen);draw()}
+const link=r=>location.origin+location.pathname+'#p='+r+'.'+priv[r].k;
+const copy=async t=>{try{await navigator.clipboard.writeText(t);toast('Invite link copied. Anyone with it can read this chat.')}catch{prompt('Copy the invite link',t)}};
 
-async function send(){const t=$('#in').value.trim();if(!t||!me())return;$('#in').value='';
- for(const b of order()){const data={uid:b.user.uid,name:b.user.displayName||'Anon',photo:b.user.photoURL||'',text:t.slice(0,2000),ts:serverTimestamp(),rx:{}};
-  if(reply)data.re={n:reply.name,t:reply.text.slice(0,80)};
-  try{await addDoc(collection(b.db,'rooms',room,'msgs'),data);reply=null;$('#rp').hidden=true;status();return}
+// ---- Sending ----
+function cancel(){reply=edit=att=null;note('');$('#at').hidden=true}
+function startEdit(m){edit=m;reply=null;$('#in').value=m.text||'';note('Editing message (Esc to cancel)');$('#in').focus()}
+function pick(f){if(!f)return;if(f.size>25e6)return toast('Max 25 MB before compression');att=f;$('#at').hidden=false;$('#at').textContent='📎 '+f.name+' ('+kb(f.size)+') will be compressed. Tap to remove'}
+async function send(){let t=$('#in').value.trim();if((!t&&!att)||!me())return;
+ const c=t.match(/^(\/\w+)\s*([\s\S]*)$/);if(c){if(CMD[c[1]])t=(c[2]+' '+CMD[c[1]]).trim();else if(c[1]=='/me')t='*'+c[2]+'*';else if(c[1]=='/spoiler')t='||'+c[2]+'||'}
+ t=t.slice(0,2000);const P=isP(room);$('#in').value='';
+ if(edit){const m=edit,b=B[m.b];cancel();const d=P?{c:tb(await enc(room,te.encode(JSON.stringify({t,q:m.re?.t,qn:m.re?.n,f:m.f})))),edited:true,u:serverTimestamp()}:{text:t,edited:true,u:serverTimestamp()};updateDoc(doc(b.db,'rooms',room,'msgs',m.id),d).catch(()=>toast('Edit failed'));return}
+ let pr=null,f=null;
+ if(att){try{pr=await prep(att)}catch{$('#in').value=t;return toast('That file is still over ~600 KB after compression')}
+  f={n:att.name.slice(0,80),t:pr.t,s:pr.b.length,o:att.size,z:pr.z}}
+ const rp=reply,exp=P?Timestamp.fromMillis(Date.now()+HR):null,b64=pr&&tb(P?await enc(room,pr.b):pr.b);
+ for(const b of order()){try{const bt=writeBatch(b.db),ref=doc(collection(b.db,'rooms',room,'msgs'));let f2=null;
+   if(pr){const fid=doc(collection(b.db,'rooms',room,'files')).id,fd={uid:b.user.uid,d:b64};if(P)fd.exp=exp;f2={id:fid,...f};bt.set(doc(b.db,'rooms',room,'files',fid),fd)}
+   const d={uid:b.user.uid,name:b.user.displayName||'Anon',photo:b.user.photoURL||'',ts:serverTimestamp(),u:serverTimestamp(),rx:{}};
+   if(P){d.c=tb(await enc(room,te.encode(JSON.stringify({t,q:rp?.text.slice(0,80),qn:rp?.name,f:f2}))));d.exp=exp}
+   else{d.text=t;if(rp)d.re={n:rp.name,t:rp.text.slice(0,80)};if(f2)d.f=f2}
+   bt.set(ref,d);await bt.commit();cancel();status();return}
   catch(e){b.down=Date.now();status()}}
  $('#in').value=t;toast('Every server is full or offline. Try again in a few minutes.')}
+async function loadFile(m,btn){btn.textContent='Loading...';try{const b=B[m.b],s=await getDoc(doc(b.db,'rooms',room,'files',m.f.id));if(!s.exists())throw 0;b.rd++;
+ let by=fb(s.data().d);if(isP(room))by=await dec(room,by);if(m.f.z)by=await pipe(by,DecompressionStream);
+ const img=/^image\/(webp|png|jpe?g|gif)$/.test(m.f.t);urls.set(m.f.id,{u:URL.createObjectURL(new Blob([by],{type:img?m.f.t:'application/octet-stream'})),img});draw()}catch{btn.textContent='Expired or unavailable'}}
+const rx=(m,e)=>{const b=B[m.b],u=b.user.uid,has=(m.rx?.[e]||[]).includes(u);return updateDoc(doc(b.db,'rooms',room,'msgs',m.id),new FieldPath('rx',e),has?arrayRemove(u):arrayUnion(u),'u',serverTimestamp())};
+const del=m=>{const b=B[m.b];updateDoc(doc(b.db,'rooms',room,'msgs',m.id),isP(room)?{c:'',del:true,u:serverTimestamp()}:{text:'',del:true,u:serverTimestamp()}).catch(()=>toast('Delete failed'));if(m.f)deleteDoc(doc(b.db,'rooms',room,'files',m.f.id)).catch(()=>{})};
+// Authors clean up their own expired private messages; the Firestore TTL policy (see README) catches the rest.
+function purge(){if(!isP(room))return;const now=Date.now();B.forEach(b=>{if(!b.user)return;for(const m of b.msgs.values())if(m.exp&&m.exp<now&&!m.pg){m.pg=1;if(m.uid==b.user.uid){deleteDoc(doc(b.db,'rooms',room,'msgs',m.id)).catch(()=>{});if(m.f)deleteDoc(doc(b.db,'rooms',room,'files',m.f.id)).catch(()=>{})}}});draw()}
 
-const rx=(m,e)=>{const b=B[m.b],u=b.user.uid,has=(m.rx?.[e]||[]).includes(u);return updateDoc(doc(b.db,'rooms',room,'msgs',m.id),new FieldPath('rx',e),has?arrayRemove(u):arrayUnion(u))};
-
-$('#msgs').onclick=e=>{const el=e.target.closest('.m');if(!el)return;const a=e.target.closest('[data-a]')?.dataset,m=B[el.dataset.b].msgs.get(el.dataset.id);
+// ---- Events ----
+$('#msgs').onclick=e=>{if(e.target.id=='old')return older();const sp=e.target.closest('.sp');if(sp){sp.classList.toggle('on');return}
+ const el=e.target.closest('.m');if(!el)return;const a=e.target.closest('[data-a]')?.dataset,m=B[el.dataset.b].msgs.get(el.dataset.id);if(!m)return;
  if(!a){open=open==m.id?'':m.id;draw();return}
- const ref=()=>doc(B[m.b].db,'rooms',room,'msgs',m.id);
  if(a.a=='rx')rx(m,a.e).catch(()=>toast('Reaction failed'));
- if(a.a=='re'){reply=m;$('#rp').hidden=false;$('#rp').textContent='Replying to '+m.name+' (tap to cancel)';$('#in').focus()}
- if(a.a=='ed'){const v=prompt('Edit message',m.text);if(v?.trim())updateDoc(ref(),{text:v.trim().slice(0,2000),edited:true}).catch(()=>toast('Edit failed'))}
- if(a.a=='del'&&confirm('Delete this message?'))deleteDoc(ref()).catch(()=>toast('Delete failed'))};
-$('#rp').onclick=()=>{reply=null;$('#rp').hidden=true};
+ if(a.a=='re'){reply=m;edit=null;note('Replying to '+m.name+' (Esc to cancel)');$('#in').focus()}
+ if(a.a=='ed')startEdit(m);
+ if(a.a=='del'&&confirm('Delete this message?'))del(m);
+ if(a.a=='ld')loadFile(m,e.target)};
+$('#rp').onclick=cancel;$('#at').onclick=()=>{att=null;$('#at').hidden=true};
 $('#rooms').onclick=e=>{const r=e.target.closest('[data-r]')?.dataset.r;if(r)setRoom(r)};
-$('#add').onclick=()=>{const r=(prompt('Room name (friends type the same name to join)')||'').trim().toLowerCase().replace(/[^a-z0-9-]/g,'-').slice(0,30);if(!r)return;if(!rooms.includes(r)){rooms.push(r);ls.rooms=JSON.stringify(rooms)}setRoom(r)};
-$('#snd').onclick=send;$('#in').onkeydown=e=>{if(e.key=='Enter')send()};
-$('#th').onchange=e=>{document.body.dataset.th=ls.th=e.target.value};
-document.body.dataset.th=$('#th').value=ls.th||'';
-$('#nt').checked=ls.nt=='1';
-$('#nt').onchange=e=>{ls.nt=e.target.checked?'1':'0';if(e.target.checked&&'Notification'in window)Notification.requestPermission()};
+$('#rn').onclick=e=>{const a=e.target.dataset.a;if(a=='inv')copy(link(room));if(a=='lv'&&confirm('Leave this private chat? You will need the invite link to get back in.')){delete priv[room];ls.priv=JSON.stringify(priv);keys.delete(room);setRoom('general')}};
+$('#add').onclick=()=>{const r=(prompt('Room name (friends type the same name to join)')||'').trim().toLowerCase().replace(/[^a-z0-9-]/g,'-').slice(0,30);if(!r||isP(r))return;if(!rooms.includes(r)){rooms.push(r);ls.rooms=JSON.stringify(rooms)}setRoom(r)};
+$('#addp').onclick=()=>{const id='p-'+[...crypto.getRandomValues(new Uint8Array(8))].map(x=>x.toString(16).padStart(2,'0')).join('');priv[id]={k:ub(crypto.getRandomValues(new Uint8Array(32)))};ls.priv=JSON.stringify(priv);setRoom(id);copy(link(id))};
+$('#snd').onclick=send;$('#clip').onclick=()=>$('#fi').click();$('#fi').onchange=e=>{pick(e.target.files[0]);e.target.value=''};
+$('#in').onkeydown=e=>{if(e.key=='Enter')send();if(e.key=='Escape')cancel();
+ if(e.key=='ArrowUp'&&!$('#in').value){const mm=B.flatMap(b=>[...b.msgs.values()]).filter(m=>m.uid==B[m.b].user?.uid&&!m.del).sort((a,b)=>b.ts-a.ts)[0];if(mm)startEdit(mm)}};
+$('#in').onpaste=e=>{const f=e.clipboardData.files[0];if(f){e.preventDefault();pick(f)}};
+addEventListener('dragover',e=>e.preventDefault());addEventListener('drop',e=>{e.preventDefault();pick(e.dataTransfer.files[0])});
+// Ctrl/Cmd+K quick switcher
+const ql=()=>{const v=$('#qi').value.toLowerCase();$('#ql').innerHTML=[...rooms,...Object.keys(priv)].filter(r=>r.includes(v)||(isP(r)&&'private'.includes(v))).map(r=>`<button data-r="${esc(r)}">${isP(r)?'🔒 '+esc(r.slice(2,6)):'# '+esc(r)}</button>`).join('')};
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key=='k'){e.preventDefault();$('#qi').value='';ql();$('#qs').showModal();$('#qi').focus()}});
+$('#qi').oninput=ql;$('#qi').onkeydown=e=>{if(e.key=='Enter'){const r=$('#ql button')?.dataset.r;if(r)setRoom(r);$('#qs').close()}};
+$('#ql').onclick=e=>{const r=e.target.dataset.r;if(r)setRoom(r);$('#qs').close()};
+$('#th').onchange=e=>{document.body.dataset.th=ls.th=e.target.value};document.body.dataset.th=$('#th').value=ls.th||'';
+document.querySelectorAll('[data-o]').forEach(i=>{i.checked=opt(i.dataset.o);i.onchange=()=>{ls['o_'+i.dataset.o]=i.checked?'1':'0';if(i.dataset.o=='nt'&&i.checked&&'Notification'in window)Notification.requestPermission();document.body.classList.toggle('cp',opt('cp'));draw()}});
+document.body.classList.toggle('cp',opt('cp'));
 $('#out').onclick=()=>B.forEach(b=>signOut(b.auth));
+// Data saver: after 2 minutes in a background tab, stop listening (zero reads). Coming back fetches only what was missed.
+document.onvisibilitychange=()=>{if(document.hidden){if(!opt('bg')&&!isP(room))hideT=setTimeout(()=>{paused=true;B.forEach(b=>{b.unsub?.();b.unsub=null})},12e4)}else{clearTimeout(hideT);if(paused){paused=false;B.forEach(listen)}}};
 
 $('#go').onclick=async()=>{
  if(!B.length)return toast('Add your Firebase configs at the top of index.html first.');
@@ -140,5 +248,5 @@ $('#go').onclick=async()=>{
 
 B.forEach(b=>onAuthStateChanged(b.auth,u=>{b.user=u;const on=!!me();$('#login').hidden=on;$('#app').hidden=!on;
  if(on&&!$('#rooms').children.length)setRoom(room);else listen(b);status()}));
-setInterval(status,6e4);
+setInterval(status,6e4);setInterval(purge,3e4);
 </script></body></html>
